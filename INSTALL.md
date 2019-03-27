@@ -1,7 +1,7 @@
 # weexdemo工程构建日志
 
 
-## 环境准备
+## 1. 环境准备
 
 $ node -v
 v10.15.3
@@ -70,7 +70,7 @@ $ pod --version
 1.5.3
 
 
-## 使用脚手架weex-toolkit创建weexdemo工程
+## 2. 使用脚手架weex-toolkit创建weexdemo工程
 
 $ weex create weexdemo
 ? Project name weexdemo
@@ -228,3 +228,102 @@ Changes to be committed:
 	new file:   weexdemo/web/index.html
 	new file:   weexdemo/web/preview.html
 	new file:   weexdemo/webpack.config.js
+
+
+## 3. 添加iOS平台支持
+
+$ weex platform add ios
+✔ Add ios project success
+
+$ git diff
+diff --git a/weexdemo/platforms/platforms.json b/weexdemo/platforms/platforms.json
+index 9e26dfe..3efb5f0 100644
+--- a/weexdemo/platforms/platforms.json
++++ b/weexdemo/platforms/platforms.json
+@@ -1 +1,3 @@
+-{}
+\ No newline at end of file
++{
++       "ios": "1.0.0"
++}
+
+$ git add --all
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   ../INSTALL.md
+	new file:   platforms/ios/LICENSE
+	new file:   platforms/ios/Podfile
+	new file:   platforms/ios/README.md
+	new file:   platforms/ios/WeexDemo.xcodeproj/project.pbxproj
+	new file:   platforms/ios/WeexDemo.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+	new file:   platforms/ios/WeexDemo.xcodeproj/xcshareddata/xcschemes/WeexDemo.xcscheme
+	new file:   platforms/ios/WeexDemo.xcodeproj/xcshareddata/xcschemes/WeexUITestDemo.xcscheme
+	new file:   platforms/ios/WeexDemo.xcworkspace/contents.xcworkspacedata
+	new file:   platforms/ios/WeexDemo/AppDelegate.h
+	new file:   platforms/ios/WeexDemo/AppDelegate.m
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Contents.json
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-29.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-29@2x-1.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-29@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-29@3x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-40.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-40@2x-1.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-40@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-40@3x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-60@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-60@3x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-76.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-76@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/AppIcon.appiconset/Icon-83.5@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/Contents.json
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Contents.json
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default-4.7@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default-568h@2x-1.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default-568h@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default@2x-1.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default@3x-1.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/Default@3x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/iPhoneX-landscape.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/LaunchImage.launchimage/iPhoneX@3x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/back.imageset/Contents.json
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/back.imageset/back.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/back.imageset/back@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/back.imageset/back@3x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/reload.imageset/Contents.json
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/reload.imageset/reload.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/reload.imageset/reload@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/reload.imageset/reload@3x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/scan.imageset/Contents.json
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/scan.imageset/scan.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/scan.imageset/scan@2x.png
+	new file:   platforms/ios/WeexDemo/Assets.xcassets/scan.imageset/scan@3x.png
+	new file:   platforms/ios/WeexDemo/DemoDefine.h
+	new file:   platforms/ios/WeexDemo/Images.xcassets/Brand Assets.launchimage/Contents.json
+	new file:   platforms/ios/WeexDemo/WeexConfig/WXImgLoaderDefaultImpl.h
+	new file:   platforms/ios/WeexDemo/WeexConfig/WXImgLoaderDefaultImpl.m
+	new file:   platforms/ios/WeexDemo/WeexConfig/WeexSDKManager.h
+	new file:   platforms/ios/WeexDemo/WeexConfig/WeexSDKManager.m
+	new file:   platforms/ios/WeexDemo/WeexDemo-Info.plist
+	new file:   platforms/ios/WeexDemo/WeexScanner/UIViewController+WXDemoNaviBar.h
+	new file:   platforms/ios/WeexDemo/WeexScanner/UIViewController+WXDemoNaviBar.m
+	new file:   platforms/ios/WeexDemo/WeexScanner/WXDemoViewController.h
+	new file:   platforms/ios/WeexDemo/WeexScanner/WXDemoViewController.m
+	new file:   platforms/ios/WeexDemo/config.xml
+	new file:   platforms/ios/WeexDemo/main.m
+	new file:   platforms/ios/WeexDemo/weex-icon.png
+	new file:   platforms/ios/WeexDemoTests/Info.plist
+	new file:   platforms/ios/WeexDemoTests/WeexDemoTests.m
+	new file:   platforms/ios/WeexUITestDemo-Info.plist
+	new file:   platforms/ios/WeexUITestDemoUITests/Info.plist
+	new file:   platforms/ios/WeexUITestDemoUITests/WeexUITestDemoUITests.m
+	new file:   platforms/ios/bundlejs/index.js
+	new file:   platforms/ios/weex.png
+	new file:   platforms/ios/weex@2x.png
+	modified:   platforms/platforms.json
