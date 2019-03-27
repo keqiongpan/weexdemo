@@ -413,3 +413,9 @@ Changes to be committed:
 	new file:   platforms/android/gradlew.bat
 	new file:   platforms/android/settings.gradle
 	modified:   platforms/platforms.json
+
+
+## 5. 启动本地Web服务器并在浏览器中打开web版应用
+
+$ weex run web
+[✔] Run `npm start` command done
