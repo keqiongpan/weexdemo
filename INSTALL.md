@@ -327,3 +327,89 @@ Changes to be committed:
 	new file:   platforms/ios/weex.png
 	new file:   platforms/ios/weex@2x.png
 	modified:   platforms/platforms.json
+
+
+## 4. 添加Android平台支持
+
+$ weex platform add android
+✔ Add android project success
+
+$ git diff
+diff --git a/weexdemo/platforms/platforms.json b/weexdemo/platforms/platforms.json
+index 3efb5f0..7266f0d 100644
+--- a/weexdemo/platforms/platforms.json
++++ b/weexdemo/platforms/platforms.json
+@@ -1,3 +1,4 @@
+ {
+-       "ios": "1.0.0"
++       "ios": "1.0.0",
++       "android": "1.0.0"
+ }
+
+$ git add --all
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   ../INSTALL.md
+	new file:   platforms/android/.gitignore
+	new file:   platforms/android/.weex_plugin.json
+	new file:   platforms/android/LICENSE
+	new file:   platforms/android/NOTICE
+	new file:   platforms/android/README.md
+	new file:   platforms/android/app/.gitignore
+	new file:   platforms/android/app/build.gradle
+	new file:   platforms/android/app/proguard-rules.pro
+	new file:   platforms/android/app/src/main/AndroidManifest.xml
+	new file:   platforms/android/app/src/main/assets/index.js
+	new file:   platforms/android/app/src/main/java/com/weex/app/AbsWeexActivity.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/SplashActivity.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/WXApplication.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/WXPageActivity.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/extend/BlurTool.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/extend/BlurTransformation.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/extend/ImageAdapter.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/extend/WXEventModule.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/hotreload/HotReloadManager.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/util/AppConfig.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/util/AppConfigXmlParser.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/util/AppPreferences.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/util/CommonUtils.java
+	new file:   platforms/android/app/src/main/java/com/weex/app/util/Constants.java
+	new file:   platforms/android/app/src/main/res/drawable-hdpi/ic_action_refresh.png
+	new file:   platforms/android/app/src/main/res/drawable-hdpi/ic_action_scan.png
+	new file:   platforms/android/app/src/main/res/drawable-mdpi/ic_action_refresh.png
+	new file:   platforms/android/app/src/main/res/drawable-mdpi/ic_action_scan.png
+	new file:   platforms/android/app/src/main/res/drawable-xhdpi/ic_action_refresh.png
+	new file:   platforms/android/app/src/main/res/drawable-xhdpi/ic_action_scan.png
+	new file:   platforms/android/app/src/main/res/drawable-xxhdpi/ic_action_refresh.png
+	new file:   platforms/android/app/src/main/res/drawable-xxhdpi/ic_action_scan.png
+	new file:   platforms/android/app/src/main/res/layout/activity_splash.xml
+	new file:   platforms/android/app/src/main/res/layout/activity_wxpage.xml
+	new file:   platforms/android/app/src/main/res/menu/main.xml
+	new file:   platforms/android/app/src/main/res/menu/main_scan.xml
+	new file:   platforms/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+	new file:   platforms/android/app/src/main/res/values-v21/styles.xml
+	new file:   platforms/android/app/src/main/res/values-w820dp/dimens.xml
+	new file:   platforms/android/app/src/main/res/values-zh-rCN/strings.xml
+	new file:   platforms/android/app/src/main/res/values/attrs.xml
+	new file:   platforms/android/app/src/main/res/values/colors.xml
+	new file:   platforms/android/app/src/main/res/values/dimens.xml
+	new file:   platforms/android/app/src/main/res/values/drawables.xml
+	new file:   platforms/android/app/src/main/res/values/strings.xml
+	new file:   platforms/android/app/src/main/res/values/styles.xml
+	new file:   platforms/android/app/src/main/res/values/themes.xml
+	new file:   platforms/android/app/src/main/res/xml/app_config.xml
+	new file:   platforms/android/app/tools/debug.keystore
+	new file:   platforms/android/build.gradle
+	new file:   platforms/android/codeStyleSettings.xml
+	new file:   platforms/android/gradle.properties
+	new file:   platforms/android/gradle/wrapper/gradle-wrapper.jar
+	new file:   platforms/android/gradle/wrapper/gradle-wrapper.properties
+	new file:   platforms/android/gradlew
+	new file:   platforms/android/gradlew.bat
+	new file:   platforms/android/settings.gradle
+	modified:   platforms/platforms.json
