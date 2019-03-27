@@ -711,3 +711,48 @@ Changes to be committed:
 	modified:   platforms/ios/WeexDemo/WeexDemo-Info.plist
 	new file:   platforms/ios/bundlejs/components/HelloWorld.js
 	modified:   platforms/ios/bundlejs/index.js
+
+
+## 7. 转换为Android代码并编译在Simulator中运行Android版应用
+
+$ weex run android
+[✔] Compile JSBundle done
+? Select one of the device Nexus_5X_API_26_x86 (Simulator)
+[✔] Start hotreload server done
+[✔] Set native config done
+[✔] Copy JS source done
+[✔] Watch JS source done
+[✔] Build APP done
+[✔] Launch APP done
+Hotreload server is actived, enjoy your develop
+Type Ctrl+C to exist
+
+$ git diff
+diff --git a/weexdemo/platforms/android/app/src/main/res/xml/app_config.xml b/weexdemo/platforms/android/app/src/main/res/xml/app_config.xml
+index aabbdbd..60e6629 100644
+--- a/weexdemo/platforms/android/app/src/main/res/xml/app_config.xml
++++ b/weexdemo/platforms/android/app/src/main/res/xml/app_config.xml
+@@ -4,8 +4,8 @@
+         xmlns:android="http://schemas.android.com/apk/res/android">
+     <name>Hello</name>
+     <preference name="loglevel" value="DEBUG" />
+-    <preference name="launch_locally" value="true" />
++    <preference name="launch_locally" value="true"/>
+     <preference name="launch_url" value="http://127.0.0.1:8080/dist/index.js"/>
+-    <preference name="local_url" value="file://assets/index.js" />
++    <preference name="local_url" value="file://assets/dist/index.js"/>
+ 
+ </widget>
+
+$ git add --all
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   ../INSTALL.md
+	modified:   platforms/android/app/src/main/res/xml/app_config.xml
+	new file:   platforms/android/bundlejs/components/HelloWorld.js
+	new file:   platforms/android/bundlejs/index.js
