@@ -756,3 +756,43 @@ Changes to be committed:
 	modified:   platforms/android/app/src/main/res/xml/app_config.xml
 	new file:   platforms/android/bundlejs/components/HelloWorld.js
 	new file:   platforms/android/bundlejs/index.js
+
+
+## 8. 比较Web/iOS/Android各个版本中打包代码的差异
+
+$ find ./dist -type f | \
+> while read -r DISTFILE
+>   do
+>     DISTFILE=$(basename ${DISTFILE})
+>     echo "--------  ${DISTFILE}  --------"
+>     find . -name "${DISTFILE}" | grep -v node_modules | xargs shasum | sort
+>   done
+--------  vendor.web.js  --------
+fc176da0a6abbc1622be170a8fccbac4e861b595  ./dist/vendor.web.js
+--------  index.js  --------
+0d46ae978b17315768a876602a000cf313468713  ./.temp/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./dist/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/android/app/build/intermediates/assets/debug/dist/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/android/app/src/main/assets/dist/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/android/bundlejs/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/ios/app/src/main/assets/dist/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/ios/build/Build/Products/Debug-iphonesimulator/WeexDemo.app/bundlejs/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/ios/bundlejs/index.js
+a24ffa55af055ff406048d24dc511d35cc6fb73e  ./platforms/android/app/build/intermediates/assets/debug/index.js
+a24ffa55af055ff406048d24dc511d35cc6fb73e  ./platforms/android/app/src/main/assets/index.js
+d8bbba75030a10d0e9073c65077e832bae858f99  ./test/unit/index.js
+--------  index.web.js  --------
+2f003ba9ed5dba38a7256319d1d03e35fa4d21cd  ./.temp/index.web.js
+9dc8725f512ce78c4e32f29d0cdf471485a21ddb  ./dist/index.web.js
+--------  HelloWorld.js  --------
+a9d75596216b6e040f56f679c0fae8095708d1a7  ./.temp/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./dist/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/android/app/build/intermediates/assets/debug/dist/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/android/app/src/main/assets/dist/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/android/bundlejs/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/app/src/main/assets/dist/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/build/Build/Products/Debug-iphonesimulator/WeexDemo.app/bundlejs/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/bundlejs/components/HelloWorld.js
+--------  HelloWorld.web.js  --------
+8ecfc0ce1b4ee8f17af4c64c5a293b037c4a2339  ./.temp/components/HelloWorld.web.js
+e9193584098f78a8124371d81cd2a3c9fd13d289  ./dist/components/HelloWorld.web.js
