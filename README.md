@@ -5,11 +5,11 @@
 
 ## 1. 环境准备
 
-- [Node.js](https://nodejs.org/en/download/) : 含npm等前端编译链工具；
-- [cnpm](http://npm.taobao.org/) : 淘宝npm替代工具，主要使用国内镜像加速npm包下载速度，安装命令： npm install -g cnpm --registry=https://registry.npm.taobao.org
-- Xcode : 针对iOS应用，提供相关编译链工具；
+- [Node.js](https://nodejs.org/en/download/) : 含npm等前端工具；
+- [cnpm](http://npm.taobao.org/) : 淘宝npm替代工具，主要使用国内镜像加速npm包下载速度，安装命令： `npm install -g cnpm --registry=https://registry.npm.taobao.org` 。
+- [Xcode](https://developer.apple.com/xcode/) : 针对iOS应用，提供相关编译链工具；
 - [CocoaPods](https://cocoapods.org/) : 针对iOS应用，与Xcode搭配使用，作为iOS应用的第三方包管理工具；
-- Android SDK : 针对Android应用，提供相关编译链工具。建议安装 Android Stdio ，对 Android SDK 进行安装更新。
+- [Android SDK](https://developer.android.com/) : 针对Android应用，提供相关编译链工具。建议安装 Android Stdio ，对 Android SDK 进行安装更新。
 
 
 ## 2. 运行weexdemo工程
@@ -35,7 +35,7 @@ $ weex run ios
 $ weex run android
 ```
 
-*** 对于详细的工程搭建细节，可以参考 [[INSTALL.md]] 文件，里面详细记录了环境细节及命令执行结果。 ***
+对于详细的工程搭建细节，可以参考 [INSTALL.md](INSTALL.md) 文件，里面详细记录了环境细节及命令执行结果。
 
 
 ## 3. 工程结构
@@ -222,4 +222,4 @@ $ weex run android
 ./weexdemo/platforms/android/bundlejs/components/HelloWorld.js
 ```
 
-*** 注意：对于编译打包后的index.js、HelloWorld.js文件，在Web/iOS/Andorid三个版本的工程中，文件内容是完全一致的。可以认为如果不调用平台特定代码，三个平台的weex打包后的内容是一致通用的。 ***
+注意：对于编译打包后的index.js、HelloWorld.js文件，在Web/iOS/Andorid三个版本的工程中，文件内容是完全一致的。可以认为如果不调用平台特定代码，三个平台的weex打包后的内容是一致通用的。
