@@ -31,11 +31,6 @@ scope = ""
 user-agent = "npm/6.9.0 node/v10.15.3 darwin x64"
 userconfig = "/Users/stduser/.cnpmrc"
 
-; node bin location = /usr/local/bin/node
-; cwd = /Users/stduser/Archive/Public/Remote/MySources/weexdemo
-; HOME = /Users/stduser
-; "npm config ls -l" to show all defaults.
-
 $ weex -v
 2.0.0-beta.7
 - @weex-cli/generator : v2.0.0-beta.7
