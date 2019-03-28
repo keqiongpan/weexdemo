@@ -10,8 +10,8 @@
 .idea/
 
 # weex
-dist/
-.temp/
+#dist/
+#.temp/
 
 # npm
 package-lock.json
