@@ -6,7 +6,8 @@
 ## 1. 环境准备
 
 - [Node.js](https://nodejs.org/en/download/) : 含npm等前端工具；
-- [cnpm](http://npm.taobao.org/) : 淘宝npm替代工具，主要使用国内镜像加速npm包下载速度，安装命令： `npm install -g cnpm --registry=https://registry.npm.taobao.org` 。
+- [cnpm](http://npm.taobao.org/) : 淘宝npm替代工具，主要使用国内镜像加速npm包下载速度，安装命令： `npm install -g cnpm --registry=https://registry.npm.taobao.org` ；
+- [weex-toolkit](https://weex.apache.org/zh/guide/introduction.html) : Weex的脚本架工具，安装命令： `npm install -g weex-toolkit@beta` （当前建议安装beta版，正式版与最新的包管理工具等不兼容）；
 - [Xcode](https://developer.apple.com/xcode/) : 针对iOS应用，提供相关编译链工具；
 - [CocoaPods](https://cocoapods.org/) : 针对iOS应用，与Xcode搭配使用，作为iOS应用的第三方包管理工具；
 - [Android SDK](https://developer.android.com/) : 针对Android应用，提供相关编译链工具。建议安装 Android Stdio ，对 Android SDK 进行安装更新。
