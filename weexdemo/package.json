@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "scripts": {
+    "inst": "npm install && cd ./platforms/ios && pod install",
     "start": "npm run serve",
     "build": "webpack --env.NODE_ENV=common",
     "build:prod": "webpack --env.NODE_ENV=production",
