@@ -796,3 +796,25 @@ d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/bundlejs/components/He
 --------  HelloWorld.web.js  --------
 8ecfc0ce1b4ee8f17af4c64c5a293b037c4a2339  ./.temp/components/HelloWorld.web.js
 e9193584098f78a8124371d81cd2a3c9fd13d289  ./dist/components/HelloWorld.web.js
+
+
+** 分析1： 从 /dist 目录复制到/platforms/android/app或/platforms/ios/app目录的文件将不会被打包到为iOS/Android应用：
+
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./dist/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/android/app/src/main/assets/dist/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/ios/app/src/main/assets/dist/index.js
+
+d348031d05954d4d199388807440e8da5253d581  ./dist/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/android/app/src/main/assets/dist/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/app/src/main/assets/dist/components/HelloWorld.js
+
+
+** 分析2： 从 /dist 目录复制到 /platforms/android/bundlejs 或 /platforms/ios/bundlejs 目录的文件将会被打包到为iOS/Android应用：
+
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./dist/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/android/bundlejs/index.js
+4c101b1ada36dedc99103b3288172ba99dccf1c2  ./platforms/ios/bundlejs/index.js
+
+d348031d05954d4d199388807440e8da5253d581  ./dist/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/android/bundlejs/components/HelloWorld.js
+d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/bundlejs/components/HelloWorld.js
