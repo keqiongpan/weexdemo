@@ -813,3 +813,79 @@ d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/app/src/main/assets/di
 d348031d05954d4d199388807440e8da5253d581  ./dist/components/HelloWorld.js
 d348031d05954d4d199388807440e8da5253d581  ./platforms/android/bundlejs/components/HelloWorld.js
 d348031d05954d4d199388807440e8da5253d581  ./platforms/ios/bundlejs/components/HelloWorld.js
+
+
+## 9. 清理整个工程的临时文件后重建工程编译环境
+
+$ ls -la
+total 312
+drwxr-xr-x   8 stduser  staff    256  3 28 11:27 .
+drwxr-xr-x  13 stduser  staff    416  3 27 10:09 ..
+drwxr-xr-x  17 stduser  staff    544  3 28 11:27 .git
+-rw-r--r--   1 stduser  staff   4071  3 28 11:27 .gitignore
+-rw-r--r--   1 stduser  staff  97292  3 28 10:50 INSTALL.md
+-rw-r--r--   1 stduser  staff   1068  3 27 10:09 LICENSE
+-rw-r--r--   1 stduser  staff     24  3 27 10:09 README.md
+drwxr-xr-x  22 stduser  staff    704  3 28 11:18 weexdemo
+$ rm -rf weexdemo/
+$ git reset --hard
+HEAD is now at 95acb1e [修改] 删除冗余的注释内容。
+
+$ cd weexdemo/
+$ npm install
+npm WARN deprecated istanbul@0.4.5: This module is no longer maintained, try this instead:
+npm WARN deprecated   npm i nyc
+npm WARN deprecated Visit https://istanbul.js.org/integrations for other alternatives.
+npm WARN deprecated babel-preset-es2015@6.24.1: 🙌  Thanks for using Babel: we recommend using babel-preset-env now: please read babeljs.io/env to update! 
+npm WARN deprecated samsam@1.3.0: This package has been deprecated in favour of @sinonjs/samsam
+npm WARN deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+npm WARN deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
+
+> fsevents@1.2.7 install /Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/fsevents
+> node install
+
+node-pre-gyp WARN Using request for node-pre-gyp https download 
+[fsevents] Success: "/Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/fsevents/lib/binding/Release/node-v64-darwin-x64/fse.node" is installed via remote
+
+> phantomjs-prebuilt@2.1.16 install /Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/phantomjs-prebuilt
+> node install.js
+
+PhantomJS not found on PATH
+Download already available at /var/folders/_7/pjr80gsj3kx8crv5pz6bjw000000gn/T/phantomjs/phantomjs-2.1.1-macosx.zip
+Verified checksum of previously downloaded file
+Extracting zip contents
+Removing /Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/phantomjs-prebuilt/lib/phantom
+Copying extracted folder /var/folders/_7/pjr80gsj3kx8crv5pz6bjw000000gn/T/phantomjs/phantomjs-2.1.1-macosx.zip-extract-1553744070337/phantomjs-2.1.1-macosx -> /Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/phantomjs-prebuilt/lib/phantom
+Writing location.js file
+Done. Phantomjs binary available at /Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall /Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/uglifyjs-webpack-plugin
+> node lib/post_install.js
+
+
+> sinon@4.5.0 postinstall /Users/stduser/Archive/Public/Remote/MySources/weexdemo/weexdemo/node_modules/sinon
+> node scripts/support-sinon.js
+
+Have some ❤️ for Sinon? You can support the project via Open Collective:
+ > https://opencollective.com/sinon/donate
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN babel-loader@6.4.1 requires a peer of webpack@1 || 2 || ^2.1.0-beta || ^2.2.0-rc but none is installed. You must install peer dependencies yourself.
+npm WARN babel-loader@6.4.1 requires a peer of webpack@1 || 2 || ^2.1.0-beta || ^2.2.0-rc but none is installed. You must install peer dependencies yourself.
+
+added 1726 packages from 1956 contributors and audited 15007 packages in 52.762s
+found 22 vulnerabilities (11 low, 7 moderate, 4 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+$ cd platforms/ios/
+$ pod install
+Analyzing dependencies
+Downloading dependencies
+Installing SDWebImage (3.7.5)
+Installing SocketRocket (0.4.2)
+Installing WeexPluginLoader (0.0.1.9.1)
+Installing WeexSDK (0.20.1)
+Generating Pods project
+Integrating client project
+Sending stats
+Pod installation complete! There are 4 dependencies from the Podfile and 4 total pods installed.
