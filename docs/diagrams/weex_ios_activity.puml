@@ -1,0 +1,78 @@
+@startuml
+title Weex架框下iOS应用的基本流程
+start
+
+:初始化应用程序;
+
+partition Weex {
+    :使用WXAppConfiguration类对Weex架框进行配置。
+
+    主要会进行下面几项参数的设置：
+        1. 公司组织，例如：[WXAppConfiguration setAppGroup:@"AliApp"]；
+        2. 应用名称，例如：[WXAppConfiguration setAppName:@"WeexDemo"]；
+        3. 应用版本，例如：[WXAppConfiguration setAppVersion:@"1.8.3"]；
+        4. 用户代理，例如：[WXAppConfiguration setExternalUserAgent:@"WeexDemo/1.8.3"]。
+
+    除此，还可以设置自定义的网络请求协议类（详见NSURLProtocol类）列表等。;
+
+    :调用[WXSDKEngine initSDKEnvironment]初始化SDK环境;
+
+    :设置Weex架框的其它参数选项，可选步骤。一般会进行如下设置：
+
+        1. 调用[WXSDKEngine registerHandler:withProtocol:]注册Weex架框各类事件的钩子(Hook)；
+        2. 调用[WXLog setLogLevel:]设置Weex架框的日志打印级别；
+        3. 设置Weex架框的其他参数选项...;
+}
+
+:获取打包后Weex应用主页（通常为bundlejs/index.js）的路径，下面简称index.js;
+
+partition 若干种展示Weex应用页面的方法 {
+    fork
+        :根据index.js路径生成
+        WXRootViewController
+        的__**导航视图控制器**__对象;
+
+        :[WXRootViewController initWithSourceURL:];
+
+        :通过下面方面展示到界面上：
+
+            1. 主视图控制器；
+            2. Tab页子视图控制器；
+            3. 模态弹出页视图控制器；
+            4. 其它展示方式等。;
+    fork again
+        :根据index.js路径生成
+        WXBaseViewController
+        的__**视图控制器**__对象;
+
+        :[WXBaseViewController initWithSourceURL:];
+
+        :通过下面方面展示到界面上：
+
+            1. 主视图控制器；
+            2. 导航页子视图控制器；
+            3. Tab页子视图控制器；
+            4. 模态弹出页视图控制器；
+            5. 其它展示方式等。;
+    fork again
+        :根据index.js路径生成
+        WXSDKInstance
+        的__**Weex实例**__对象;
+
+        :生成并初始化WXSDKInstance对象。
+        
+        instance = WXSDKInstance.new
+        instance.viewController = ...
+        instance.frame = ...
+        instaince.onCreate = ^(UIView *weexView) {
+            //** /* 将weexView添加到任一视图 */ **//
+        };
+
+        :接管viewappear、viewdisappear等事件;
+
+        :[instaince renderWithURL:options:data:];
+    end fork
+}
+
+end
+@end

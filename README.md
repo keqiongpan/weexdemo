@@ -201,3 +201,12 @@ $ weex run android
 ```
 
 注意：对于编译打包后的index.js、HelloWorld.js文件，在Web/iOS/Andorid三个版本的工程中，文件内容是完全一致的。可以认为如果不调用平台特定代码，三个平台的weex打包后的内容是一致通用的。
+
+
+## 4. 整合到原生应用
+
+这里以将weex页面整合到iOS应用为例进行说明，整合到Android应用的过程与之相似，下面是整合到iOS的流程：
+
+![Weex架框下iOS应用的基本流程](./docs/diagrams/weex_ios_activity.png)
+
+从上面的流程可以看出，搭建好iOS应用工程，完成初始化Weex框架及展示Weex页面的处理后，只需要将Web版的打包文件复制到iOS应用工程下面，重新编译打包后即可。甚至可以部署在Web服务器上，直接通过网络加载Weex页面资源，iOS应用不需要重新打包发布。
