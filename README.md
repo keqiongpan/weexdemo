@@ -270,3 +270,8 @@ Weex官网上有更详细的说明，可参考如下文档：
 
 1. 《[Weex 和 Web 的平台差异](https://weex.apache.org/zh/guide/platform-difference.html)》
 2. 《[在 Weex 中使用 Vue.js](https://weex.apache.org/zh/guide/use-vue-in-weex.html)》
+
+
+## 7. 附录：Weex应用的webpack打包流程
+
+![Weex应用的webpack打包流程](./docs/diagrams/weex_webpack_activity.png)

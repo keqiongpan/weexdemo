@@ -1,0 +1,70 @@
+@startuml
+title Weex应用的webpack打包流程
+start
+
+:npm run build;
+
+partition npm {
+    :读取package.json中的scripts.build项;
+    :执行webpack --env.NODE_ENV=common|
+}
+
+partition webpack {
+    :执行webpack.config.js脚本，并根据返回的打包项进行打包处理|
+}
+
+partition webpack.config.js {
+    :根据命令行的env参数设置加载./configs/webpack.common.conf.js;
+    :执行webpack.common.conf.js并返回ForWeb、ForNative两组打包项。
+
+        ForWeb : Weex的Web版打包文件，文件名格式为[name].web.js；
+        ForNative : Weex的原生版(iOS/Android)打包文件，文件名格式为[name].js。|
+}
+
+partition webpack.common.conf.js {
+    :getEntryFile();
+
+    :遍历./src/**/*.vue文件，生成ForWeb、ForNative两组字典。
+
+        key : vue文件的文件名；
+        value : ./.temp目录中对应的打包后的文件名。;
+
+    :根据上面的ForWeb、ForNative两组*.vue文件字典，生成对应的两组webpack
+    的Config对象，对象主要由下面这些参数组成：
+    
+        entry : 即上面ForWeb或ForNative的*.vue文件字典，亦即chunk列表；
+        output : 输出文件的选项，主要指定输出到./dist目录及文件名格式；
+        resolve : 解决文件路径中出现的别名，例如：路径中的"@"表示src目录等；
+        module : 配置各个匹配文件的处理模块，例如：eslint、babel、vue等；
+        plugins : 配置插件列表，例如：定义process.env.NODE_ENV的值等。;
+
+    :返回上面ForWeb、ForNative两组WebpackConfig配置对象，交由webpack进行打包处理|
+}
+
+partition webpack {
+    :遍历WebpackConfig.entry字典项，亦即chunk列表;
+    :根据WebpackConfig.module配置，对匹配的文件调用对应的处理模块进行处理;
+
+    fork
+        :eslint-loader;
+        :对.js/.vue文件进行代码检查;
+    fork again
+        :vue-loader;
+        :对.vue文件中的less/sass等样式语法进行转译;
+        :对.vue文件中的weex内容进行转译;
+        :输出文件到./.temp/目录;
+    fork again
+        :weex-loader;
+        :对.vue文件中的less/sass等样式语法进行转译;
+        :输出文件到./.temp/目录;
+    fork again
+        :babel-loader;
+        :对.js文件中出现的ES6语法转换为ES5语法;
+        :输出文件到./.temp/目录;
+    end fork
+
+    :将各个chunk对应的打包文件输出到./dist目录;
+}
+
+end
+@enduml
