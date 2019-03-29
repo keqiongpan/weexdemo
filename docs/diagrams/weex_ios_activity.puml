@@ -26,7 +26,7 @@ partition Weex {
 
 :获取打包后Weex应用主页（通常为bundlejs/index.js）的路径，下面简称index.js;
 
-partition 若干种展示Weex应用页面的方法 {
+partition 若干种展示Weex页面的方法 {
     fork
         :根据index.js路径生成
         WXRootViewController
@@ -34,7 +34,7 @@ partition 若干种展示Weex应用页面的方法 {
 
         :[WXRootViewController initWithSourceURL:];
 
-        :通过下面方面展示到界面上：
+        :通过下面几种方式展示到界面上：
 
             1. 主视图控制器；
             2. Tab页子视图控制器；
@@ -47,7 +47,7 @@ partition 若干种展示Weex应用页面的方法 {
 
         :[WXBaseViewController initWithSourceURL:];
 
-        :通过下面方面展示到界面上：
+        :通过下面几种方式展示到界面上：
 
             1. 主视图控制器；
             2. 导航页子视图控制器；

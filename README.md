@@ -266,7 +266,7 @@ Weex官网上有更详细的说明，可参考如下文档：
 
 主要是没有DOM、没有BOM等，不能像一般Web开发一样使用各种方便的前端第三方库，如jQuery等。
 
-详情差异与限制条件请查看Weex官方文档：
+详细差异与限制条件请查看Weex官方文档：
 
 1. 《[Weex 和 Web 的平台差异](https://weex.apache.org/zh/guide/platform-difference.html)》
 2. 《[在 Weex 中使用 Vue.js](https://weex.apache.org/zh/guide/use-vue-in-weex.html)》
