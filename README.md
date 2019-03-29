@@ -205,8 +205,58 @@ $ weex run android
 
 ## 4. 整合到原生应用
 
-这里以将weex页面整合到iOS应用为例进行说明，整合到Android应用的过程与之相似，下面是整合到iOS的流程：
+这里以将weex页面整合到iOS应用为例进行说明，整合到Android应用的过程与之相似：
 
 ![Weex架框下iOS应用的基本流程](./docs/diagrams/weex_ios_activity.png)
 
 从上面的流程可以看出，搭建好iOS应用工程，完成初始化Weex框架及展示Weex页面的处理后，只需要将Web版的打包文件复制到iOS应用工程下面，重新编译打包后即可。甚至可以部署在Web服务器上，直接通过网络加载Weex页面资源，iOS应用不需要重新打包发布。
+
+----
+
+下面是Weex官网关于这方面主题的参考文档：
+
+1. 《[集成到Android应用](https://weex.apache.org/zh/guide/develop/integrate-to-android-app.html)》
+2. 《[集成 Weex 到 iOS](https://weex.apache.org/zh/guide/develop/integrate-to-iOS-app.html)》
+
+
+## 5. 与原生应用交互
+
+这里以iOS应用为例进行说明，与Android应用的交互与之相似：
+
+- 自定义module
+
+ > iOS:
+ >
+ > 1. 新增类实现<WXModuleProtocol>协议；
+ > 2. 新增若干要暴露给weex页面脚本调用的类成员方法；
+ > 3. 使用WX_EXPORT_METHOD宏声明要暴露的类成员方法；
+ > 4. 注册自定义module到Weex框架，与一个模块名绑定。
+
+ > Weex:
+ >
+ > 1. 请求模块对象： `const module = weex.requireModule(<模块名称>)` ；
+ > 2. 调用 `var result = module.<成员方法>(...)` 完成与原生应用的交互；
+
+- 自定义组件
+
+ > iOS:
+ >
+ > 1. 新增类继承自WXComponent类；
+ > 2. 重写loadView方法实现自定义视图；
+ > 3. 自定义组件的属性，可选；
+ > 4. 自定义组件的事件，可选；
+ > 5. 自定义组件的方法，可选；
+ > 6. 注册自定义组件到Weex框架，与一个标签名绑定。
+
+ > Weex:
+ >
+ > 1. 在页面模板中添加该标签；
+ > 2. 与预定义标签相同的操作方式。
+
+----
+
+Weex官网上有更详细的说明，可参考如下文档：
+
+1. 《[扩展Android能力](https://weex.apache.org/zh/guide/extend/extend-android.html)》
+2. 《[扩展iOS能力](https://weex.apache.org/zh/guide/extend/extend-ios.html)》
+3. 《[扩展Web组件](https://weex.apache.org/zh/guide/extend/extend-web.html)》
