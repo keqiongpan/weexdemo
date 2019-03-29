@@ -260,3 +260,13 @@ Weex官网上有更详细的说明，可参考如下文档：
 1. 《[扩展Android能力](https://weex.apache.org/zh/guide/extend/extend-android.html)》
 2. 《[扩展iOS能力](https://weex.apache.org/zh/guide/extend/extend-ios.html)》
 3. 《[扩展Web组件](https://weex.apache.org/zh/guide/extend/extend-web.html)》
+
+
+## 6. 差异与限制
+
+主要是没有DOM、没有BOM等，不能像一般Web开发一样使用各种方便的前端第三方库，如jQuery等。
+
+详情差异与限制条件请查看Weex官方文档：
+
+1. 《[Weex 和 Web 的平台差异](https://weex.apache.org/zh/guide/platform-difference.html)》
+2. 《[在 Weex 中使用 Vue.js](https://weex.apache.org/zh/guide/use-vue-in-weex.html)》
