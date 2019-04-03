@@ -266,12 +266,37 @@ Weex官网上有更详细的说明，可参考如下文档：
 
 主要是没有DOM、没有BOM等，不能像一般Web开发一样使用各种方便的前端第三方库，如jQuery等。
 
+1. 只读的weex对象，包含当前页面信息，及Weex的环境信息等；
+2. 对于iOS、Android，需要注册图片下载的Handler，Weex本身不提供图片下载的功能；
+3. 跨页面通信BroadcastChannel对象，详见[这里](https://weex.apache.org/zh/docs/api/broadcast-channel.html)；
+4. 关于CSS样式，仅支持Weex文档罗列的通用样式及个别组件的自定义样式，详见[这里](https://weex.apache.org/zh/docs/styles/common-styles.html)；
+5. Weex对于长度值目前只支持像素值px，不支持相对单位（em、rem、pt、%）；
+6. Weex盒模型的box-sizing默认为border-box，即盒子的宽高包含内容、内边距和边框的宽度，不包含外边距的宽度；
+7. Weex只支持overflow:hidden；
+8. Weex只支持display:flex；
+9. `<input>`和`<switch>`组件目前不支持click事件，请使用change或input事件来代替；
+10. 绑定文本： `<text>{{props-variable-name}}</text>`；
+11. 绑定属性： `<a :href="{{props-variable-name}}">here</a>`；
+12. 绑定事件： `<div @click="{{methods-handler-name}}">...</div>`；
+13. Weex的屏幕统一以宽度750px进行布局，在不同设备上以宽度等比例缩放；
+
+
 详细差异与限制条件请查看Weex官方文档：
 
 1. 《[Weex 和 Web 的平台差异](https://weex.apache.org/zh/guide/platform-difference.html)》
 2. 《[在 Weex 中使用 Vue.js](https://weex.apache.org/zh/guide/use-vue-in-weex.html)》
+3. 《[weex构建css所遇问题](https://www.jianshu.com/p/e4c7a5d48b01)》（第三方文档）
+4. 《[weex 通用样式以及需要注意的问题](http://www.ptbird.cn/weex-common-style-and-problems.html)》（第三方文档）
+5. 《[Weex布局尺寸通用适配方案的研究](https://yq.aliyun.com/articles/134276)》（第三方文档）
+6. 《[Weex项目实战及踩坑记录](https://www.jianshu.com/p/a412296ab4b3)》（第三方文档）
+7. 《[没有死！阿里公开Weex技术架构，还开源了一大波组件](https://blog.csdn.net/zz901214/article/details/79168707)》（第三方文档）
 
 
 ## 7. 附录：Weex应用的webpack打包流程
 
 ![Weex应用的webpack打包流程](./docs/diagrams/weex_webpack_activity.png)
+
+
+## 8. 附录：Weex官网UI组件库（weex-ui）
+
+详见[这里](https://alibaba.github.io/weex-ui/#/cn/)。
