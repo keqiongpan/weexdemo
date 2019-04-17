@@ -5,20 +5,27 @@
     <HelloWorld/>
     <div class="clickme" @click="onClick"><text>Click Me</text></div>
     <MessageBox ref="msgbox" />
+    <div style="flex-direction: row; align-items: center; transform: scale(2);">
+      <SwitchRadio :on.sync="radio"/>
+      <text style="width: 2em; text-align: center">{{ radio ? "on" : "off" }}</text>
+    </div>
   </div>
 </template>
 
 <script>
 import HelloWorld from '@/components/HelloWorld'
 import MessageBox from '@/components/MessageBox'
+import SwitchRadio from '@/components/SwitchRadio'
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    MessageBox
+    MessageBox,
+    SwitchRadio
   },
   data: () => ({
-    logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png'
+    logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png',
+    radio: false
   }),
   methods: {
     onClick () {
