@@ -1,7 +1,7 @@
 <template>
   <div class="switch-radio" @click="value = !value">
-    <div class="track" :class="value ? 'track-on' : 'track-off'"></div>
-    <div class="thumb" :class="value ? 'thumb-on' : 'thumb-off'"></div>
+    <div class="track" :class="[value ? 'track-on' : 'track-off']"></div>
+    <div class="thumb" :class="[value ? 'thumb-on' : 'thumb-off']"></div>
   </div>
 </template>
 
