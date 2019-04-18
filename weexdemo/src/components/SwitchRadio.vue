@@ -1,8 +1,15 @@
 <template>
   <div class="switch-radio" @click="value = !value">
     <div class="track" :class="[value ? 'track-on' : 'track-off']"></div>
-    <div class="groove" v-if="!value"></div>
-    <div class="thumb" :class="[value ? 'thumb-on' : 'thumb-off']"></div>
+    <transition name="shrink">
+      <div class="groove" v-if="!value"></div>
+    </transition>
+    <transition name="flip-on">
+      <div class="thumb thumb-on" v-if="value"></div>
+    </transition>
+    <transition name="flip-off">
+      <div class="thumb thumb-off" v-if="!value"></div>
+    </transition>
   </div>
 </template>
 
@@ -61,5 +68,23 @@ export default {
   }
   .thumb-off {
     left: 4px;
+  }
+  .shrink-enter-active {
+    transition: all 0.15s;
+  }
+  .shrink-enter {
+    transform: scale(0);
+  }
+  .flip-on-enter-active {
+    transition: all 0.15s;
+  }
+  .flip-on-enter {
+    transform: translateX(-40px);
+  }
+  .flip-off-enter-active {
+    transition: all 0.15s;
+  }
+  .flip-off-enter {
+    transform: translateX(40px);
   }
 </style>
