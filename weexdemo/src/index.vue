@@ -5,9 +5,9 @@
     <HelloWorld/>
     <div class="clickme" @click="onClick"><text>Click Me</text></div>
     <MessageBox ref="msgbox" />
-    <div style="flex-direction: row; align-items: center; transform: scale(2);">
+    <div style="flex-direction: row; align-items: center;">
       <SwitchRadio :on.sync="radio"/>
-      <text style="width: 2em; text-align: center">{{ radio ? "on" : "off" }}</text>
+      <text style="font-size: 32px; width: 64px; margin: 16px;">{{ radio ? "ON" : "OFF" }}</text>
     </div>
   </div>
 </template>
