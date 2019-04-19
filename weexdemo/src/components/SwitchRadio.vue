@@ -14,8 +14,7 @@
 </template>
 
 <script>
-import Weex from 'weex-vue-render'
-import Velocity from 'velocity-animate'
+const animation = weex.requireModule('animation')
 export default {
   props: ['on'],
   data: function () {
@@ -30,25 +29,30 @@ export default {
   },
   methods: {
     viewportPixelFromDesignPixel: function (designPixel) {
-      // const designPixelPerRem = 750.0 / 10.0
-      // const viewportWidth = this.$el.ownerDocument.documentElement.clientWidth
-      // const viewportPixelPerRem = viewportWidth / 10.0
-      const env = Weex.config.env
+      const env = weex.config.env
       const designPixelPerRem = env.rootValue
       const viewportPixelPerRem = env.rem
       return designPixel / designPixelPerRem * viewportPixelPerRem
     },
+    transition: function () {
+      let args = [...arguments]
+      setTimeout(function () { animation.transition.apply(animation, args) }, 0)
+    },
     shrinkEnter: function (el, done) {
-      Velocity(el, { scale: [1, 0] }, { duration: 'fast', complete: done })
+      el.style.transform = 'scale(0)'
+      this.transition(el, { styles: { transform: 'scale(1)' }, duration: 3000 }, done)
     },
     shrinkLeave: function (el, done) {
-      Velocity(el, { scale: [0, 1] }, { duration: 'fast', complete: done })
+      el.style.transform = 'scale(1)'
+      this.transition(el, { styles: { transform: 'scale(0)' }, duration: 3000 }, done)
     },
     flipOnEnter: function (el, done) {
-      Velocity(el, { translateX: [0, this.viewportPixelFromDesignPixel(-40)] }, { duration: 'fast', complete: done })
+      el.style.transform = `translateX(${this.viewportPixelFromDesignPixel(-40)}px)`
+      this.transition(el, { styles: { transform: 'translateX(0)' }, duration: 3000 }, done)
     },
     flipOffEnter: function (el, done) {
-      Velocity(el, { translateX: [0, this.viewportPixelFromDesignPixel(40)] }, { duration: 'fast', complete: done })
+      el.style.transform = `translateX(${this.viewportPixelFromDesignPixel(40)}px)`
+      this.transition(el, { styles: { transform: 'translateX(0)' }, duration: 3000 }, done)
     }
   }
 }
