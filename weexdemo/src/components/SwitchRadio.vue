@@ -1,19 +1,21 @@
 <template>
   <div class="switch-radio" @click="value = !value">
     <div class="track" :class="[value ? 'track-on' : 'track-off']"></div>
-    <transition name="shrink">
+    <transition @enter="shrinkEnter" @leave="shrinkLeave" :css="false">
       <div class="groove" v-if="!value"></div>
     </transition>
-    <transition name="flip-on">
+    <transition @enter="flipOnEnter" :css="false">
       <div class="thumb thumb-on" v-if="value"></div>
     </transition>
-    <transition name="flip-off">
+    <transition @enter="flipOffEnter" :css="false">
       <div class="thumb thumb-off" v-if="!value"></div>
     </transition>
   </div>
 </template>
 
 <script>
+import Weex from 'weex-vue-render'
+import Velocity from 'velocity-animate'
 export default {
   props: ['on'],
   data: function () {
@@ -24,6 +26,29 @@ export default {
   watch: {
     value: function (newValue, oldValue) {
       this.$emit('update:on', newValue)
+    }
+  },
+  methods: {
+    viewportPixelFromDesignPixel: function (designPixel) {
+      // const designPixelPerRem = 750.0 / 10.0
+      // const viewportWidth = this.$el.ownerDocument.documentElement.clientWidth
+      // const viewportPixelPerRem = viewportWidth / 10.0
+      const env = Weex.config.env
+      const designPixelPerRem = env.rootValue
+      const viewportPixelPerRem = env.rem
+      return designPixel / designPixelPerRem * viewportPixelPerRem
+    },
+    shrinkEnter: function (el, done) {
+      Velocity(el, { scale: [1, 0] }, { duration: 'fast', complete: done })
+    },
+    shrinkLeave: function (el, done) {
+      Velocity(el, { scale: [0, 1] }, { duration: 'fast', complete: done })
+    },
+    flipOnEnter: function (el, done) {
+      Velocity(el, { translateX: [0, this.viewportPixelFromDesignPixel(-40)] }, { duration: 'fast', complete: done })
+    },
+    flipOffEnter: function (el, done) {
+      Velocity(el, { translateX: [0, this.viewportPixelFromDesignPixel(40)] }, { duration: 'fast', complete: done })
     }
   }
 }
@@ -68,23 +93,5 @@ export default {
   }
   .thumb-off {
     left: 4px;
-  }
-  .shrink-enter-active {
-    transition: all 0.15s;
-  }
-  .shrink-enter {
-    transform: scale(0);
-  }
-  .flip-on-enter-active {
-    transition: all 0.15s;
-  }
-  .flip-on-enter {
-    transform: translateX(-40px);
-  }
-  .flip-off-enter-active {
-    transition: all 0.15s;
-  }
-  .flip-off-enter {
-    transform: translateX(40px);
   }
 </style>
