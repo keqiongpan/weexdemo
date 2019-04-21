@@ -1,15 +1,8 @@
 <template>
-  <div class="switch-radio" @click="value = !value">
-    <div class="track" :class="[value ? 'track-on' : 'track-off']"></div>
-    <transition @enter="shrinkEnter" @leave="shrinkLeave" :css="false">
-      <div class="groove" v-if="!value"></div>
-    </transition>
-    <transition @enter="flipOnEnter" :css="false">
-      <div class="thumb thumb-on" v-if="value"></div>
-    </transition>
-    <transition @enter="flipOffEnter" :css="false">
-      <div class="thumb thumb-off" v-if="!value"></div>
-    </transition>
+  <div class="switch-radio" @click="onClick">
+    <div ref="track" class="track" :class="[value ? 'track-on' : 'track-off']"></div>
+    <div ref="groove" class="groove" :class="[value ? 'groove-on' : 'groove-off']"></div>
+    <div ref="thumb" class="thumb" :class="[value ? 'thumb-on' : 'thumb-off']"></div>
   </div>
 </template>
 
@@ -28,31 +21,42 @@ export default {
     }
   },
   methods: {
-    viewportPixelFromDesignPixel: function (designPixel) {
-      const env = weex.config.env
-      const designPixelPerRem = env.rootValue
-      const viewportPixelPerRem = env.rem
-      return designPixel / designPixelPerRem * viewportPixelPerRem
+    animation: function (value, done) {
+      let vm = this
+      let animationCount = 0
+
+      let animationDone = function () {
+        if (--animationCount === 0) {
+          done()
+        }
+      }
+
+      let animationProcess = function () {
+        animationCount++
+        animation.transition(vm.$refs.track, {
+          styles: { backgroundColor: `${value ? '#4cd864' : '#e5e5e5'}` },
+          duration: 150
+        }, animationDone)
+
+        animationCount++
+        animation.transition(vm.$refs.groove, {
+          styles: { transform: `scale(${value ? 0 : 1})` },
+          duration: 150
+        }, animationDone)
+
+        animationCount++
+        animation.transition(vm.$refs.thumb, {
+          styles: { transform: `translateX(${value ? 40 : 0}px)` },
+          duration: 150
+        }, animationDone)
+      }
+
+      setTimeout(animationProcess, 0)
     },
-    transition: function () {
-      let args = [...arguments]
-      setTimeout(function () { animation.transition.apply(animation, args) }, 0)
-    },
-    shrinkEnter: function (el, done) {
-      el.style.transform = 'scale(0)'
-      this.transition(el, { styles: { transform: 'scale(1)' }, duration: 3000 }, done)
-    },
-    shrinkLeave: function (el, done) {
-      el.style.transform = 'scale(1)'
-      this.transition(el, { styles: { transform: 'scale(0)' }, duration: 3000 }, done)
-    },
-    flipOnEnter: function (el, done) {
-      el.style.transform = `translateX(${this.viewportPixelFromDesignPixel(-40)}px)`
-      this.transition(el, { styles: { transform: 'translateX(0)' }, duration: 3000 }, done)
-    },
-    flipOffEnter: function (el, done) {
-      el.style.transform = `translateX(${this.viewportPixelFromDesignPixel(40)}px)`
-      this.transition(el, { styles: { transform: 'translateX(0)' }, duration: 3000 }, done)
+    onClick: function () {
+      let vm = this
+      let value = !vm.value
+      vm.animation(value, function () { vm.value = value })
     }
   }
 }
@@ -83,8 +87,15 @@ export default {
     border-radius: 27px;
     background-color: white;
   }
+  .groove-on {
+    transform: scale(0);
+  }
+  .groove-off {
+    transform: scale(1);
+  }
   .thumb {
     position: absolute;
+    left: 4px;
     top: 4px;
     width: 54px;
     height: 54px;
@@ -93,9 +104,9 @@ export default {
     box-shadow: 0px 2px 5px #b0b0b0;
   }
   .thumb-on {
-    left: 44px;
+    transform: translateX(40px);
   }
   .thumb-off {
-    left: 4px;
+    transform: translateX(0px);
   }
 </style>
