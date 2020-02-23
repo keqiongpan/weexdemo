@@ -5,9 +5,17 @@
     <HelloWorld/>
     <div class="clickme" @click="onClick"><text>Click Me</text></div>
     <MessageBox ref="msgbox" />
-    <div style="flex-direction: row; align-items: center;">
-      <SwitchRadio :on.sync="radio"/>
-      <text style="font-size: 32px; width: 64px; margin: 16px;">{{ radio ? "ON" : "OFF" }}</text>
+    <PositionLab style="transform: scale(5.0); margin: 100px;" />
+    <div style="border-width: 1px; border-color: red;">
+      <FormItem required>
+        <template #title>title</template>
+        <template #content><SwitchRadio /></template>
+        <text>What's up?</text>
+        <div style="flex-direction: row; align-items: center;">
+          <SwitchRadio :on.sync="radio"/>
+          <text style="font-size: 32px; width: 64px; margin: 16px;">{{ radio ? "ON" : "OFF" }}</text>
+        </div>
+      </FormItem>
     </div>
   </div>
 </template>
@@ -16,12 +24,17 @@
 import HelloWorld from '@/components/HelloWorld'
 import MessageBox from '@/components/MessageBox'
 import SwitchRadio from '@/components/SwitchRadio'
+import PositionLab from '@/components/PositionLab'
+import FormItem from '@/components/FormItem'
+
 export default {
   name: 'App',
   components: {
     HelloWorld,
     MessageBox,
-    SwitchRadio
+    SwitchRadio,
+    PositionLab,
+    FormItem
   },
   data: () => ({
     logo: 'https://gw.alicdn.com/tfs/TB1yopEdgoQMeJjy1XaXXcSsFXa-640-302.png',
